@@ -11,6 +11,17 @@ public class Aksiomatikos {
     @Column(name = "ADT")
     private String ADT;
 
+    //Relations with other tables
+    @OneToOne(mappedBy = "aksiomatiikos" , cascade = CascadeType.ALL)
+    private User user;
+
+    @OneToMany(mappedBy = "aksiomatikos")
+    private List<Application> applications;
+
+    @ManyToOne
+    @JoinColumn(name = "ADT")
+    private Authorities authorities;
+
     //Constructors
     public Aksiomatikos() {
     }
@@ -27,17 +38,6 @@ public class Aksiomatikos {
     public void setADT(String ADT) {
         this.ADT = ADT;
     }
-
-    //Relations with other tables
-    @OneToOne(mappedBy = "aksiomatiikos" , cascade = CascadeType.ALL)
-    private User user;
-
-    @OneToMany(mappedBy = "aksiomatikos")
-    private List<Application> applications;
-
-    @OneToOne
-    @JoinColumn(name = "ADT")
-    private Authorities authorities;
 
     @Override
     public String toString() {

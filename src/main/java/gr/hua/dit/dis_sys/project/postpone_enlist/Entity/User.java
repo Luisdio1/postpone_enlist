@@ -28,6 +28,19 @@ public class User {
     @Column(name = "militarynumber")
     private String militaryNumber;
 
+    //Relations with other tables
+    @OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name ="ADT")
+    private Aksiomatikos aksiomatikos;
+
+    @OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name ="ADT")
+    private Citizen citizen;
+
+    @OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name ="ADT")
+    private Employee employee;
+
     //Constructors
     public User() {
     }
@@ -98,19 +111,6 @@ public class User {
     public void setMilitaryNumber(String militaryNumber) {
         this.militaryNumber = militaryNumber;
     }
-
-    //Relations with other tables
-    @OneToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name ="ADT")
-    private Aksiomatikos aksiomatikos;
-
-    @OneToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name ="ADT")
-    private Citizen citizen;
-
-    @OneToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name ="ADT")
-    private Employee employee;
 
     @Override
     public String toString() {

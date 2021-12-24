@@ -16,6 +16,17 @@ public class Citizen {
     @Column(name = "aplicationid")
     private int applicationId;
 
+    //Relations with other tables
+    @OneToOne(mappedBy = "citizen" , cascade = CascadeType.ALL)
+    private User user;
+
+    @OneToOne(mappedBy = "citizen")
+    private Application application;
+
+    @ManyToOne
+    @JoinColumn(name = "ADT")
+    private Authorities authorities;
+
     //Constructors
     public Citizen() {
     }
@@ -50,17 +61,6 @@ public class Citizen {
     public void setApplicationId(int applicationId) {
         this.applicationId = applicationId;
     }
-
-    //Relations with other tables
-    @OneToOne(mappedBy = "citizen" , cascade = CascadeType.ALL)
-    private User user;
-
-    @OneToOne(mappedBy = "citizen")
-    private Application application;
-
-    @OneToOne
-    @JoinColumn(name = "ADT")
-    private Authorities authorities;
 
     @Override
     public String toString() {

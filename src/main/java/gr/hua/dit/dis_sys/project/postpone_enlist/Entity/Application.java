@@ -31,6 +31,19 @@ public class Application {
     @Column(name = "ADT_aks")
     private String ADTAks;
 
+    //Relations with other tables
+    @ManyToOne
+    @JoinColumn(name ="ADT_aks")
+    private Aksiomatikos aksiomatikos;
+
+    @OneToOne
+    @JoinColumn(name ="ADT_cit")
+    private Citizen citizen;
+
+    @ManyToOne
+    @JoinColumn(name = "ADT_empl")
+    private Employee employee;
+
     //Constructors
     public Application() {
     }
@@ -114,17 +127,4 @@ public class Application {
                 ", ADTAks='" + ADTAks + '\'' +
                 '}';
     }
-
-    //Relations with other tables
-    @ManyToOne
-    @JoinColumn(name ="ADT_aks")
-    private Aksiomatikos aksiomatikos;
-
-    @OneToOne
-    @JoinColumn(name ="ADT_cit")
-    private Citizen citizen;
-
-    @ManyToOne
-    @JoinColumn(name = "ADT_empl")
-    private Employee employee;
 }

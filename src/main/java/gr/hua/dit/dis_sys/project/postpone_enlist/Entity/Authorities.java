@@ -1,6 +1,7 @@
 package gr.hua.dit.dis_sys.project.postpone_enlist.Entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "authorities")
@@ -12,6 +13,18 @@ public class Authorities {
 
     @Column(name = "Role")
     private String role;
+
+    //Relations with other tables
+    @OneToMany(mappedBy = "authorities")
+    private List<Employee> employees;
+
+    //Relations with other tables
+    @OneToMany(mappedBy = "authorities")
+    private List<Citizen> citizens;
+
+    //Relations with other tables
+    @OneToMany(mappedBy = "authorities")
+    private List<Aksiomatikos> aksiomatikoi;
 
     //Constructors
     public Authorities() {
@@ -46,16 +59,4 @@ public class Authorities {
                 ", role='" + role + '\'' +
                 '}';
     }
-
-    //Relations with other tables
-    @OneToOne(mappedBy = "authorities")
-    private Employee employee;
-
-    //Relations with other tables
-    @OneToOne(mappedBy = "authorities")
-    private Citizen citizen;
-
-    //Relations with other tables
-    @OneToOne(mappedBy = "authorities")
-    private Aksiomatikos aksiomatikos;
 }

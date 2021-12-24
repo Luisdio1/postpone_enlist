@@ -11,6 +11,17 @@ public class Employee {
     @Column(name = "ADT")
     private String ADT;
 
+    //Relations with other tables
+    @OneToOne(mappedBy = "employee" , cascade = CascadeType.ALL)
+    private User user;
+
+    @OneToMany(mappedBy = "employee")
+    private List<Application> applications;
+
+    @ManyToOne
+    @JoinColumn(name = "ADT")
+    private Authorities authorities;
+
     //Constructors
     public Employee() {
     }
@@ -27,17 +38,6 @@ public class Employee {
     public void setADT(String ADT) {
         this.ADT = ADT;
     }
-
-    //Relations with other tables
-    @OneToOne(mappedBy = "employee" , cascade = CascadeType.ALL)
-    private User user;
-
-    @OneToMany(mappedBy = "employee")
-    private List<Application> applications;
-
-    @OneToOne
-    @JoinColumn(name = "ADT")
-    private Authorities authorities;
 
     @Override
     public String toString() {
