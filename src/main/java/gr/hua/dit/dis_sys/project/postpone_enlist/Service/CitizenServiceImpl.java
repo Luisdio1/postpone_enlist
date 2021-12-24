@@ -19,8 +19,11 @@ public class CitizenServiceImpl implements CitizenService{
 
     @Transactional
     @Override
-    public void submitApplication() {
+    public void submitApplication(Application application) {
 
+        Application app = new Application(application.getApplicationId(), application.getDateCreated(), application.getDateModified(),
+                                            application.getStatus(), application.getADTEmpl(), application.getADTCit(), application.getADTAks());
+        appRep.save(app);
     }
 
     @Transactional
