@@ -9,17 +9,17 @@ public class Aksiomatikos {
 
     @Id
     @Column(name = "ADT")
+    @JoinColumn(name = "ADT")
     private String ADT;
 
     //Relations with other tables
-    @OneToOne(mappedBy = "aksiomatiikos" , cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "aksiomatikos" , cascade = CascadeType.ALL)
     private User user;
 
     @OneToMany(mappedBy = "aksiomatikos")
     private List<Application> applications;
 
     @ManyToOne
-    @JoinColumn(name = "ADT")
     private Authorities authorities;
 
     //Constructors

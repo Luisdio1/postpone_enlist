@@ -8,6 +8,7 @@ public class Citizen {
 
     @Id
     @Column(name = "ADT")
+    @JoinColumn(name = "ADT")
     private String ADT;
 
     @Column(name = "paper")
@@ -24,7 +25,6 @@ public class Citizen {
     private Application application;
 
     @ManyToOne
-    @JoinColumn(name = "ADT")
     private Authorities authorities;
 
     //Constructors

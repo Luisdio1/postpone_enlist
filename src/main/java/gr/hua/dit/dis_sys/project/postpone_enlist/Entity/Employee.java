@@ -9,6 +9,7 @@ public class Employee {
 
     @Id
     @Column(name = "ADT")
+    @JoinColumn(name = "ADT")
     private String ADT;
 
     //Relations with other tables
@@ -19,7 +20,6 @@ public class Employee {
     private List<Application> applications;
 
     @ManyToOne
-    @JoinColumn(name = "ADT")
     private Authorities authorities;
 
     //Constructors

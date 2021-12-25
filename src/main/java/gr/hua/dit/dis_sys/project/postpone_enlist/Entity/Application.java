@@ -8,6 +8,7 @@ import java.util.Date;
 public class Application {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "aplicationid")
     private int applicationId;
 
@@ -23,25 +24,25 @@ public class Application {
     private int status;
 
     @Column(name = "ADT_empl")
+    @JoinColumn(name = "ADT_empl")
     private String ADTEmpl;
 
     @Column(name = "ADT_cit")
+    @JoinColumn(name ="ADT_cit")
     private String ADTCit;
 
     @Column(name = "ADT_aks")
+    @JoinColumn(name ="ADT_aks")
     private String ADTAks;
 
     //Relations with other tables
     @ManyToOne
-    @JoinColumn(name ="ADT_aks")
     private Aksiomatikos aksiomatikos;
 
     @OneToOne
-    @JoinColumn(name ="ADT_cit")
     private Citizen citizen;
 
     @ManyToOne
-    @JoinColumn(name = "ADT_empl")
     private Employee employee;
 
     //Constructors
