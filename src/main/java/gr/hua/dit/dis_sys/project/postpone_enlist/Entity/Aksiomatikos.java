@@ -16,10 +16,11 @@ public class Aksiomatikos {
     @OneToOne(mappedBy = "aksiomatikos" , cascade = CascadeType.ALL)
     private User user;
 
-    @OneToMany(mappedBy = "aksiomatikos")
+    @OneToMany(mappedBy = "aks")
     private List<Application> applications;
 
     @ManyToOne
+    @JoinColumn(name = "ADT", referencedColumnName="ADT", insertable=false, updatable=false)
     private Authorities authorities;
 
     //Constructors

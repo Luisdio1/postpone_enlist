@@ -20,6 +20,7 @@ public class Employee {
     private List<Application> applications;
 
     @ManyToOne
+    @JoinColumn(name = "ADT", referencedColumnName="ADT", insertable=false, updatable=false)
     private Authorities authorities;
 
     //Constructors

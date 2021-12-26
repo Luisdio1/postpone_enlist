@@ -24,25 +24,25 @@ public class Application {
     private int status;
 
     @Column(name = "ADT_empl")
-    @JoinColumn(name = "ADT_empl")
     private String ADTEmpl;
 
     @Column(name = "ADT_cit")
-    @JoinColumn(name ="ADT_cit")
     private String ADTCit;
 
-    @Column(name = "ADT_aks")
-    @JoinColumn(name ="ADT_aks")
+    @Column(name ="ADT_aks")
     private String ADTAks;
 
     //Relations with other tables
-    @ManyToOne
-    private Aksiomatikos aksiomatikos;
+    @ManyToOne()
+    @JoinColumn(name = "ADT_aks", referencedColumnName="ADT", insertable=false, updatable=false)
+    private Aksiomatikos aks;
 
     @OneToOne
+    @JoinColumn(name ="ADT_cit" , insertable=false, updatable=false)
     private Citizen citizen;
 
     @ManyToOne
+    @JoinColumn(name = "ADT_empl", referencedColumnName="ADT" , insertable=false, updatable=false)
     private Employee employee;
 
     //Constructors

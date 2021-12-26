@@ -15,7 +15,7 @@ public class Citizen {
     private String paper;
 
     @Column(name = "aplicationid")
-    private int applicationId;
+    private Integer applicationId;
 
     //Relations with other tables
     @OneToOne(mappedBy = "citizen" , cascade = CascadeType.ALL)
@@ -25,6 +25,7 @@ public class Citizen {
     private Application application;
 
     @ManyToOne
+    @JoinColumn(name = "ADT", referencedColumnName="ADT", insertable=false, updatable=false)
     private Authorities authorities;
 
     //Constructors
