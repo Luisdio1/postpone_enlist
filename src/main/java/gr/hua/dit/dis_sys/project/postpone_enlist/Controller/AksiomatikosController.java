@@ -24,8 +24,13 @@ public class AksiomatikosController {
         return aksiomatikosService.getApplication(id);
     }
 
-    @PutMapping("/apps/{id}")
+    @PutMapping("/apps/{id}/approve")
     Application approve (@PathVariable int id) {
         return aksiomatikosService.approveApplication(id);
+    }
+
+    @PutMapping("/apps/{id}/reject")
+    Application reject (@PathVariable int id) {
+        return aksiomatikosService.rejectApplication(id);
     }
 }

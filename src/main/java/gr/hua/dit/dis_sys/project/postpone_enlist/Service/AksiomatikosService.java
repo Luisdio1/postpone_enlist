@@ -9,6 +9,8 @@ public interface AksiomatikosService {
 
     public Application approveApplication(int id);
 
+    public Application rejectApplication(int id);
+
     public Application getApplication(int id);
 
     public List<Application> findAll();
