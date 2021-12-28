@@ -1,10 +1,14 @@
 package gr.hua.dit.dis_sys.project.postpone_enlist.Service;
 
+import gr.hua.dit.dis_sys.project.postpone_enlist.Entity.Aksiomatikos;
 import gr.hua.dit.dis_sys.project.postpone_enlist.Entity.Application;
+import gr.hua.dit.dis_sys.project.postpone_enlist.Entity.User;
 import gr.hua.dit.dis_sys.project.postpone_enlist.Exceptions.ApplicationNotFoundException;
 import gr.hua.dit.dis_sys.project.postpone_enlist.Repository.AksiomatikosRepository;
 import gr.hua.dit.dis_sys.project.postpone_enlist.Repository.ApplicationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -31,6 +35,10 @@ public class AksiomatikosServiceImpl implements AksiomatikosService{
     public Application approveApplication(int id) {
         Application app = getApplication(id);
         app.setStatus(2);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String aks =  authentication.getName();
+        User a = rep.findByName(aks);
+        app.setADTAks(a.getADT());
         return app;
     }
 
@@ -39,6 +47,10 @@ public class AksiomatikosServiceImpl implements AksiomatikosService{
     public Application rejectApplication(int id) {
         Application app = getApplication(id);
         app.setStatus(-2);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String aks =  authentication.getName();
+        User a = rep.findByName(aks);
+        app.setADTAks(a.getADT());
         return app;
     }
 
@@ -46,5 +58,11 @@ public class AksiomatikosServiceImpl implements AksiomatikosService{
     @Override
     public List<Application> findAll() {
         return appRep.findAll();
+    }
+
+    @Transactional
+    @Override
+    public User findByName(String name) {
+        return rep.findByName(name);
     }
 }
