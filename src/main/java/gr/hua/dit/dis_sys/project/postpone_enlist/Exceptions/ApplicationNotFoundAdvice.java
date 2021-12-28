@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+//If application doesn't exist send an HTTP STATUS NOT_FOUND and the message from ApplicationNotFoundException Class
 @ControllerAdvice
 public class ApplicationNotFoundAdvice {
 

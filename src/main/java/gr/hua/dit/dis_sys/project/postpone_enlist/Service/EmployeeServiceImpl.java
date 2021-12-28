@@ -21,6 +21,8 @@ public class EmployeeServiceImpl implements EmployeeService{
     @Autowired
     private ApplicationRepository appRep;
 
+    //Get an application given the id
+    //If not found throw an exception
     @Transactional
     @Override
     public Application getApplication(int id) {
@@ -28,36 +30,46 @@ public class EmployeeServiceImpl implements EmployeeService{
         return app;
     }
 
+    //Validate an application
     @Transactional
     @Override
     public Application validateApplication(int id) {
         Application app = getApplication(id);
         app.setStatus(1);
+
+        //Get the ADT of current user logged in
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String empl =  authentication.getName();
         User a = rep.findByName(empl);
         app.setADTEmpl(a.getADT());
+
         return app;
     }
 
+    //Reject an application
     @Transactional
     @Override
     public Application rejectApplication(int id) {
         Application app = getApplication(id);
         app.setStatus(-1);
+
+        //Get the ADT of current user logged in
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String empl =  authentication.getName();
         User a = rep.findByName(empl);
         app.setADTEmpl(a.getADT());
+
         return app;
     }
 
+    //Get all applications
     @Transactional
     @Override
     public List<Application> findAll() {
         return appRep.findAll();
     }
 
+    //Find user given the username
     @Transactional
     @Override
     public User findByName(String name) {

@@ -18,11 +18,9 @@ public class Authorities {
     @OneToMany(mappedBy = "authorities")
     private List<Employee> employees;
 
-    //Relations with other tables
     @OneToMany(mappedBy = "authorities")
     private List<Citizen> citizens;
 
-    //Relations with other tables
     @OneToMany(mappedBy = "authorities")
     private List<Aksiomatikos> aksiomatikoi;
 

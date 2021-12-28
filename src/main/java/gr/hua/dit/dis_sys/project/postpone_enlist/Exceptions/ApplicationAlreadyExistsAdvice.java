@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+//If application already exists send an HTTP STATUS CONFLICT and the message from ApplicationAlreadyExistsException Class
 @ControllerAdvice
 public class ApplicationAlreadyExistsAdvice {
     @ResponseBody

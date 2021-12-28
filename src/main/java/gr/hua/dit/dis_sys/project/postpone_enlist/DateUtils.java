@@ -23,6 +23,7 @@ public class DateUtils {
         return result;
     }
 
+    //Get current date and return it as Date
     public static Date getDate() throws ParseException {
         Date date = new Date();
         return parseDate(formatter.format(date));

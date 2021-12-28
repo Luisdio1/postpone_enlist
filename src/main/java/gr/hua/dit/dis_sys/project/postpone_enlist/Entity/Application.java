@@ -63,6 +63,7 @@ public class Application {
         this.ADTAks = ADTAks;
     }
 
+    //Copy Constructor in case is needed
     public Application(Application app) {
         this.applicationId = app.getApplicationId();
         this.dateCreated = app.getDateCreated();

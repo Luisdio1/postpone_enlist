@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 
 public interface AksiomatikosRepository extends JpaRepository<Aksiomatikos, String> {
 
+    //Custom query to return a user based on the username
     @Query("SELECT u FROM User u WHERE u.username = :name")
     User findByName(@Param("name") String name);
 }
