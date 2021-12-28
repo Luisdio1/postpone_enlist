@@ -19,7 +19,7 @@ public class Employee {
     @OneToMany(mappedBy = "employee")
     private List<Application> applications;
 
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "ADT", referencedColumnName="ADT", insertable=false, updatable=false)
     private Authorities authorities;
 

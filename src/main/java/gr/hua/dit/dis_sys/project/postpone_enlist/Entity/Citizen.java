@@ -21,7 +21,7 @@ public class Citizen {
     @OneToOne(mappedBy = "citizen")
     private Application application;
 
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "ADT", referencedColumnName="ADT", insertable=false, updatable=false)
     private Authorities authorities;
 

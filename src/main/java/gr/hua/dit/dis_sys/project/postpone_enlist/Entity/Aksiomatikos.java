@@ -19,7 +19,7 @@ public class Aksiomatikos {
     @OneToMany(mappedBy = "aks")
     private List<Application> applications;
 
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "ADT", referencedColumnName="ADT", insertable=false, updatable=false)
     private Authorities authorities;
 
