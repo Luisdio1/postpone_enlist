@@ -11,9 +11,6 @@ public class Citizen {
     @JoinColumn(name = "ADT")
     private String ADT;
 
-    @Column(name = "paper")
-    private String paper;
-
     @Column(name = "aplicationid")
     private Integer applicationId;
 
@@ -32,9 +29,8 @@ public class Citizen {
     public Citizen() {
     }
 
-    public Citizen(String ADT, String paper, int applicationId) {
+    public Citizen(String ADT, int applicationId) {
         this.ADT = ADT;
-        this.paper = paper;
         this.applicationId = applicationId;
     }
 
@@ -45,14 +41,6 @@ public class Citizen {
 
     public void setADT(String ADT) {
         this.ADT = ADT;
-    }
-
-    public String getPaper() {
-        return paper;
-    }
-
-    public void setPaper(String paper) {
-        this.paper = paper;
     }
 
     public int getApplicationId() {
@@ -67,7 +55,6 @@ public class Citizen {
     public String toString() {
         return "Citizen{" +
                 "ADT='" + ADT + '\'' +
-                ", paper='" + paper + '\'' +
                 ", applicationId=" + applicationId +
                 ", user=" + user +
                 '}';

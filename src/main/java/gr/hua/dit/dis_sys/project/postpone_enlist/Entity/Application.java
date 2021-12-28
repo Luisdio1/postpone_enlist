@@ -23,6 +23,9 @@ public class Application {
     @Column(name = "status")
     private int status;
 
+    @Column(name = "paper")
+    private String paper;
+
     @Column(name = "ADT_empl")
     private String ADTEmpl;
 
@@ -49,14 +52,26 @@ public class Application {
     public Application() {
     }
 
-    public Application(int applicationId, Date dateCreated, Date dateModified, int status, String ADTEmpl, String ADTCit, String ADTAks) {
+    public Application(int applicationId, Date dateCreated, Date dateModified, int status, String paper, String ADTEmpl, String ADTCit, String ADTAks) {
         this.applicationId = applicationId;
         this.dateCreated = dateCreated;
         this.dateModified = dateModified;
         this.status = status;
+        this.paper = paper;
         this.ADTEmpl = ADTEmpl;
         this.ADTCit = ADTCit;
         this.ADTAks = ADTAks;
+    }
+
+    public Application(Application app) {
+        this.applicationId = app.getApplicationId();
+        this.dateCreated = app.getDateCreated();
+        this.dateModified = app.getDateModified();
+        this.status = app.getStatus();
+        this.paper = app.getPaper();
+        this.ADTEmpl = app.getADTEmpl();
+        this.ADTCit = app.getADTCit();
+        this.ADTAks = app.getADTAks();
     }
 
     //Getters And Setters
@@ -92,6 +107,14 @@ public class Application {
         this.status = status;
     }
 
+    public String getPaper(){
+        return paper;
+    }
+
+    public void setPaper(String paper) {
+        this.paper = paper;
+    }
+
     public String getADTEmpl() {
         return ADTEmpl;
     }
@@ -123,6 +146,7 @@ public class Application {
                 ", dateCreated=" + dateCreated +
                 ", dateModified=" + dateModified +
                 ", status=" + status +
+                ", Paper='" + paper + '\'' +
                 ", ADTEmpl='" + ADTEmpl + '\'' +
                 ", ADTCit='" + ADTCit + '\'' +
                 ", ADTAks='" + ADTAks + '\'' +

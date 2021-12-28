@@ -14,6 +14,11 @@ public class AksiomatikosController {
     @Autowired
     private AksiomatikosServiceImpl aksiomatikosService;
 
+    @RequestMapping("")
+    String welcome() {
+        return "Welcome Aksiomatike";
+    }
+
     @GetMapping("/apps")
     List<Application> all() {
         return aksiomatikosService.findAll();
