@@ -9,12 +9,13 @@ import gr.hua.dit.dis_sys.project.postpone_enlist.Repository.ApplicationReposito
 import gr.hua.dit.dis_sys.project.postpone_enlist.Repository.CitizenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.text.ParseException;
 import java.util.List;
 
 @Service
+@Transactional
 public class CitizenServiceImpl implements CitizenService{
 
     @Autowired
@@ -23,7 +24,6 @@ public class CitizenServiceImpl implements CitizenService{
     private ApplicationRepository appRep;
 
     //Submit an application
-    @Transactional
     @Override
     public Application submitApplication(Application application) {
         //If application exists with same ADT throw an exception
@@ -37,7 +37,6 @@ public class CitizenServiceImpl implements CitizenService{
 
     //Get an application given the id
     //If not found throw an exception
-    @Transactional
     @Override
     public Application getApplication(int id) {
         Application app = appRep.findById(id).orElseThrow(() -> new ApplicationNotFoundException(id));
@@ -45,7 +44,6 @@ public class CitizenServiceImpl implements CitizenService{
     }
 
     //Update an application
-    @Transactional
     @Override
     public Application changeApplication(Application app, int id) {
         return appRep.findById(id)

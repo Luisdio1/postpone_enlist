@@ -3,6 +3,7 @@ package gr.hua.dit.dis_sys.project.postpone_enlist.Service;
 import gr.hua.dit.dis_sys.project.postpone_enlist.Entity.Application;
 import gr.hua.dit.dis_sys.project.postpone_enlist.Entity.User;
 import gr.hua.dit.dis_sys.project.postpone_enlist.Exceptions.ApplicationNotFoundException;
+import gr.hua.dit.dis_sys.project.postpone_enlist.Exceptions.UserNotFoundException;
 import gr.hua.dit.dis_sys.project.postpone_enlist.Repository.AksiomatikosRepository;
 import gr.hua.dit.dis_sys.project.postpone_enlist.Repository.ApplicationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
+@Transactional
 public class AksiomatikosServiceImpl implements AksiomatikosService{
 
     @Autowired
@@ -23,7 +25,6 @@ public class AksiomatikosServiceImpl implements AksiomatikosService{
 
     //Get an application given the id
     //If not found throw an exception
-    @Transactional
     @Override
     public Application getApplication(int id) {
         Application app = appRep.findById(id).orElseThrow(() -> new ApplicationNotFoundException(id));
@@ -31,7 +32,6 @@ public class AksiomatikosServiceImpl implements AksiomatikosService{
     }
 
     //Approve an application given the id
-    @Transactional
     @Override
     public Application approveApplication(int id) {
         Application app = getApplication(id);
@@ -47,10 +47,9 @@ public class AksiomatikosServiceImpl implements AksiomatikosService{
     }
 
     //Reject an application given the id
-    @Transactional
     @Override
     public Application rejectApplication(int id) {
-        Application app = getApplication(id);
+        Application app = appRep.findById(id).orElseThrow(() -> new ApplicationNotFoundException(id));
         app.setStatus(-2);
 
         //Get the ADT of current user logged in
@@ -63,16 +62,18 @@ public class AksiomatikosServiceImpl implements AksiomatikosService{
     }
 
     //Find all applications
-    @Transactional
     @Override
     public List<Application> findAll() {
         return appRep.findAll();
     }
 
     //Find user given the username
-    @Transactional
     @Override
     public User findByName(String name) {
-        return rep.findByName(name);
+        User user = rep.findByName(name);
+        if (user == null) {
+            throw new UserNotFoundException(name);
+        }
+        return user;
     }
 }
