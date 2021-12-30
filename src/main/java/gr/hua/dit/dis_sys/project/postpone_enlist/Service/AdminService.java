@@ -17,19 +17,19 @@ public interface AdminService {
 
     public User addUser(User user);
 
-    public User updateUser(User user);
+    public User updateUser(User user, String ADT);
 
-    public void deleteUser(User user);
+    public void deleteUser(String ADT);
 
-    public void makeUserCitizen(User user);
+    public void makeUserCitizen(String ADT);
 
-    public void makeUserEmployee(User user);
+    public void makeUserEmployee(String ADT);
 
-    public void makeUserAksiomatiko(User user);
+    public void makeUserAksiomatiko(String ADT);
 
-    public void updateAuthorityToCitizen(User user);
+    public void updateAuthorityToCitizen(String ADT);
 
-    public void updateAuthorityToEmployee(User user);
+    public void updateAuthorityToEmployee(String ADT);
 
-    public void updateAuthorityToAksioamtiko(User user);
+    public void updateAuthorityToAksioamtiko(String ADT);
 }

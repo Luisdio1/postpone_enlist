@@ -68,8 +68,8 @@ public class AdminServiceImpl implements AdminService{
 
     //Updates the users information
     @Override
-    public User updateUser(User user) {
-        return rep.findById(user.getADT())
+    public User updateUser(User user, String ADT) {
+        return rep.findById(ADT)
                 .map(newUser -> {
                     newUser.setADT(user.getADT());
                     newUser.setName(user.getName());
@@ -87,15 +87,17 @@ public class AdminServiceImpl implements AdminService{
 
     //Deletes a user
     @Override
-    public void deleteUser(User user) {
+    public void deleteUser(String ADT) {
 
+        User user = findUserByADT(ADT);
         rep.delete(user);
     }
 
-    //Store to table users the user and give him the ROLE_USER
+    //Store to table citizen the user and give him the ROLE_USER
     @Override
-    public void makeUserCitizen(User user) {
+    public void makeUserCitizen(String ADT) {
         List<Citizen> citizens = citRep.findAll();
+        User user = findUserByADT(ADT);
         if(citizens.stream().map(Citizen::getADT).filter(user.getADT()::equals).findFirst().isPresent()) {
             throw new UserAlreadyExistsException();
         }
@@ -106,8 +108,9 @@ public class AdminServiceImpl implements AdminService{
 
     //Store to table employees the user and give him the ROLE_EMPL
     @Override
-    public void makeUserEmployee(User user) {
+    public void makeUserEmployee(String ADT) {
         List<Employee> employees = emplRep.findAll();
+        User user = findUserByADT(ADT);
         if(employees.stream().map(Employee::getADT).filter(user.getADT()::equals).findFirst().isPresent()) {
             throw new UserAlreadyExistsException();
         }
@@ -118,8 +121,9 @@ public class AdminServiceImpl implements AdminService{
 
     //Store to table aksiomatikos the user and give him the ROLE_AKS
     @Override
-    public void makeUserAksiomatiko(User user) {
+    public void makeUserAksiomatiko(String ADT) {
         List<Aksiomatikos> aksiomatikoi = aksRep.findAll();
+        User user = findUserByADT(ADT);
         if(aksiomatikoi.stream().map(Aksiomatikos::getADT).filter(user.getADT()::equals).findFirst().isPresent()) {
             throw new UserAlreadyExistsException();
         }
@@ -130,28 +134,28 @@ public class AdminServiceImpl implements AdminService{
 
     //Update the authority of someone to ROLE_USER
     @Override
-    public void updateAuthorityToCitizen(User user) {
-        if (rep.findByADT(user.getADT()) == null) {
-            throw new UserNotFoundException(user.getADT());
+    public void updateAuthorityToCitizen(String ADT) {
+        if (rep.findByADT(ADT) == null) {
+            throw new UserNotFoundException(ADT);
         }
-        authRep.updateAuthority("ROLE_USER", user.getADT());
+        authRep.updateAuthority("ROLE_USER", ADT);
     }
 
     //Update the authority of someone to ROLE_EMPL
     @Override
-    public void updateAuthorityToEmployee(User user) {
-        if (rep.findByADT(user.getADT()) == null) {
-            throw new UserNotFoundException(user.getADT());
+    public void updateAuthorityToEmployee(String ADT) {
+        if (rep.findByADT(ADT) == null) {
+            throw new UserNotFoundException(ADT);
         }
-        authRep.updateAuthority("ROLE_EMPL", user.getADT());
+        authRep.updateAuthority("ROLE_EMPL", ADT);
     }
 
     //Update the authority of someone to ROLE_AKS
     @Override
-    public void updateAuthorityToAksioamtiko(User user) {
-        if (rep.findByADT(user.getADT()) == null) {
-            throw new UserNotFoundException(user.getADT());
+    public void updateAuthorityToAksioamtiko(String ADT) {
+        if (rep.findByADT(ADT) == null) {
+            throw new UserNotFoundException(ADT);
         }
-        authRep.updateAuthority("ROLE_AKS", user.getADT());
+        authRep.updateAuthority("ROLE_AKS", ADT);
     }
 }
