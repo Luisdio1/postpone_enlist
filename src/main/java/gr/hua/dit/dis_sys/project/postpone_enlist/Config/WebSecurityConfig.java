@@ -34,7 +34,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.httpBasic().and().authorizeRequests()
                 //.antMatchers("/**").hasRole("ADMIN")
                 //Give access to roles to specific URL's
-                .antMatchers("/*").permitAll()
+                .antMatchers("/").permitAll()
                 .antMatchers("/empl").hasRole("EMPL")
                 .antMatchers("/aks").hasRole("AKS")
                 .antMatchers("/cit").hasRole("USER")

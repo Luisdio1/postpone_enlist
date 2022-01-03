@@ -10,6 +10,7 @@ import gr.hua.dit.dis_sys.project.postpone_enlist.Repository.CitizenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.text.ParseException;
 import java.util.List;
@@ -19,19 +20,27 @@ import java.util.List;
 public class CitizenServiceImpl implements CitizenService{
 
     @Autowired
+    private FileService fileService;
+    @Autowired
     private CitizenRepository rep;
     @Autowired
     private ApplicationRepository appRep;
 
     //Submit an application
     @Override
-    public Application submitApplication(Application application) {
+    public Application submitApplication(Application application,MultipartFile file) {
         //If application exists with same ADT throw an exception
-        List<Application> apps = appRep.findAll();
+        /*List<Application> apps = appRep.findAll();
         if(apps.stream().map(Application::getADTCit).filter(application.getADTCit()::equals).findFirst().isPresent()) {
             throw new ApplicationAlreadyExistsException();
+        }*/
+        try {
+            application.setDateCreated(DateUtils.getDate());
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
-
+        fileService.save(file);
+        application.setPaper(fileService.getPath(file.getName()).toString());
         return appRep.save(application);
     }
 
@@ -45,7 +54,7 @@ public class CitizenServiceImpl implements CitizenService{
 
     //Update an application
     @Override
-    public Application changeApplication(Application app, int id) {
+    public Application changeApplication(Application app, int id, MultipartFile file) {
         return appRep.findById(id)
                 .map(application -> {
                     //Get Current date
@@ -55,7 +64,7 @@ public class CitizenServiceImpl implements CitizenService{
                         e.printStackTrace();
                     }
 
-                    application.setPaper(app.getPaper());
+                    fileService.save(file);
                     application.setADTCit(app.getADTCit());
                     return appRep.save(application);
                 })

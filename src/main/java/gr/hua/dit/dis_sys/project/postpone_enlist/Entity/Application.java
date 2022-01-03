@@ -1,5 +1,6 @@
 package gr.hua.dit.dis_sys.project.postpone_enlist.Entity;
 
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -61,18 +62,6 @@ public class Application {
         this.ADTEmpl = ADTEmpl;
         this.ADTCit = ADTCit;
         this.ADTAks = ADTAks;
-    }
-
-    //Copy Constructor in case is needed
-    public Application(Application app) {
-        this.applicationId = app.getApplicationId();
-        this.dateCreated = app.getDateCreated();
-        this.dateModified = app.getDateModified();
-        this.status = app.getStatus();
-        this.paper = app.getPaper();
-        this.ADTEmpl = app.getADTEmpl();
-        this.ADTCit = app.getADTCit();
-        this.ADTAks = app.getADTAks();
     }
 
     //Getters And Setters

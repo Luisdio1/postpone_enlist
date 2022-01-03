@@ -20,7 +20,6 @@ CONSTRAINT `fk_employee_user` FOREIGN KEY (`ADT`) REFERENCES `user` (`ADT`)
 
 CREATE TABLE IF NOT EXISTS `citizen` (
 `ADT` varchar(50) NOT NULL,
-`paper` varchar(100)  ,
 `aplicationid` int(11) ,
 UNIQUE KEY `ix_cit_adt` (`ADT`),
 CONSTRAINT `fk_citizen_user` FOREIGN KEY (`ADT`) REFERENCES `user` (`ADT`)
@@ -37,6 +36,7 @@ CREATE TABLE IF NOT EXISTS `aplication` (
 `date_created` date NOT NULL ,
 `date_modified` date ,
 `status` int NOT NULL ,
+`paper` varchar(100)  ,
 `ADT_empl` varchar(50) ,
 `ADT_cit` varchar(100) NOT NULL,
 `ADT_aks` varchar(50) NOT ,

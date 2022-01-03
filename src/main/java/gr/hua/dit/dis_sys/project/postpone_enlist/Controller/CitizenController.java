@@ -4,6 +4,7 @@ import gr.hua.dit.dis_sys.project.postpone_enlist.Entity.Application;
 import gr.hua.dit.dis_sys.project.postpone_enlist.Service.CitizenServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/cit")
@@ -27,14 +28,14 @@ public class CitizenController {
     }
 
     //Submit an application
-    @PostMapping("/app")
-    Application submitApp(@RequestBody Application newApplication) {
-        return citizenService.submitApplication(newApplication);
+    @PostMapping(value = "/app", consumes = {"multipart/form-data"})
+    Application submitApp(@RequestPart Application newApplication, @RequestPart MultipartFile file) {
+        return citizenService.submitApplication(newApplication,file);
     }
 
     //Update the application
-    @PutMapping("/app/{id}")
-    Application changeApp(@RequestBody Application newApplication, @PathVariable int id) {
-        return citizenService.changeApplication(newApplication, id);
+    @PutMapping(value = "/app/{id}",consumes = {"multipart/form-data"})
+    Application changeApp(@RequestPart Application newApplication,@RequestPart MultipartFile file, @PathVariable int id) {
+        return citizenService.changeApplication(newApplication, id, file);
     }
 }

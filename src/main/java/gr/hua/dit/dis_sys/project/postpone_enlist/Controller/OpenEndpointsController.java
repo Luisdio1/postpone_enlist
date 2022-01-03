@@ -22,6 +22,7 @@ public class OpenEndpointsController {
     //Register
     @PostMapping("/register")
     User register(@RequestBody User user) {
+        service.makeUserCitizen(user.getADT());
         return service.addUser(user);
     }
 
