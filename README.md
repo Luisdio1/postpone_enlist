@@ -1,5 +1,7 @@
+Εντολή για δημιουργία βάσης σε docker:
 docker run --name ergasia -v mysqldbvol:/val/lib/mysql -p 3306:3306 -e MYSQL_USER=admin -e MYSQL_PASSWORD=admin -e MYSQL_DATABASE=citizens -e MYSQL_ROOT_PASSWORD=pass --rm -d mysql/mysql-server:latest
 
+Εντολές αρχικοποίησης πινάκων και εισαγωγή test users
 CREATE TABLE IF NOT EXISTS `user` (
 `ADT` varchar(50) NOT NULL ,
 `name` varchar(50) NOT NULL ,
@@ -10,7 +12,6 @@ CREATE TABLE IF NOT EXISTS `user` (
 `militarynumber` varchar(50) NOT NULL,
 PRIMARY KEY (`ADT`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 
 CREATE TABLE IF NOT EXISTS `employee` (
 `ADT` varchar(50) NOT NULL,
@@ -46,7 +47,6 @@ CONSTRAINT `fk_aplication_citizen` FOREIGN KEY (`ADT_cit`) REFERENCES `citizen` 
 CONSTRAINT `fk_aplication_aksiomatikos` FOREIGN KEY (`ADT_aks`) REFERENCES `aksiomatikos` (`ADT`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
 CREATE TABLE IF NOT EXISTS `authorities` (
 `ADT` varchar(50) NOT NULL ,
 `Role`varchar(50) NOT NULL ,
@@ -61,7 +61,6 @@ INSERT INTO `user` VALUES
 
 INSERT INTO employee VALUES
 ('ab 123');
-
 
 INSERT INTO citizen (ADT) VALUES
 ('ac 123');

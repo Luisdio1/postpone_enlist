@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class OpenEndpointsController {
 
-    //We user the admin service just for the addUser method, So we dont make a User Service just for one method
+    //We use the admin service just for the addUser method, So we dont make a User Service just for one method
     @Autowired
     private AdminServiceImpl service;
 
