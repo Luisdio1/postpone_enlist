@@ -1,5 +1,6 @@
 package gr.hua.dit.dis_sys.project.postpone_enlist.Config;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,8 +11,14 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
+
 
 import javax.sql.DataSource;
+import java.util.Arrays;
+import java.util.Collections;
 
 @Configuration
 @EnableWebSecurity
@@ -31,8 +38,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+
         http.httpBasic().and().authorizeRequests()
-                //.antMatchers("/**").hasRole("ADMIN")
+                .antMatchers("/admin").hasRole("ADMIN")
                 //Give access to roles to specific URL's
                 .antMatchers("/").permitAll()
                 .antMatchers("/empl").hasRole("EMPL")
@@ -41,9 +49,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().csrf().disable().headers().frameOptions().disable()
 
                 //Allow Everyone to login and logout
-                .and().formLogin().permitAll().and().logout().permitAll();
+                .and().formLogin().defaultSuccessUrl("/success", true).permitAll().and().logout().permitAll();
     }
 
+
+
+ //.and().formLogin().defaultSuccessUrl("/success", true).permitAll().and().logout().permitAll();
     //Ignore authentication the specified URL's
     @Override
     public void configure(WebSecurity web) throws Exception {
@@ -56,5 +67,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public PasswordEncoder passwordEncoder() {
         PasswordEncoder encoder = new BCryptPasswordEncoder();
         return encoder;
+    }
+    @Bean
+    public CorsFilter corsFilter() {
+        final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        final CorsConfiguration config = new CorsConfiguration();
+        config.setAllowCredentials(true);
+        // Don't do this in production, use a proper list  of allowed origins
+        config.setAllowedOriginPatterns(Collections.singletonList("*"));
+        config.setAllowedHeaders(Arrays.asList("Origin", "Content-Type", "Accept"));
+        config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "OPTIONS", "DELETE", "PATCH"));
+        source.registerCorsConfiguration("/**", config);
+        return new CorsFilter(source);
     }
 }

@@ -3,6 +3,7 @@ package gr.hua.dit.dis_sys.project.postpone_enlist.Controller;
 import gr.hua.dit.dis_sys.project.postpone_enlist.Entity.User;
 import gr.hua.dit.dis_sys.project.postpone_enlist.Service.AdminServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.web.reactive.WebFluxAutoConfiguration;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -16,19 +17,17 @@ public class OpenEndpointsController {
     //Currently just shows a message to the / url
     @RequestMapping("/")
     String welcome() {
-        return "Welcome To Home Page";
+        return "Welcome";
     }
 
     //Register
-    @PostMapping("/register")
+
+    @PostMapping(value ="/register" , consumes = {"application/json"})
     User register(@RequestBody User user) {
+
         service.makeUserCitizen(user.getADT());
         return service.addUser(user);
     }
 
     //Register Page
-    @GetMapping("/register")
-    String registerPage() {
-        return "Register Page!";
-    }
 }

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>citizen</title>
+</head>
+<h1>Welcome Citizen</h1>
+<h2>Choose your action</h2>
+<!---<img src="D:\μαθήματα σχολής\κατανεμημένα συστήματα\HellenicArmy.png" style="top: 0px;
+left: 1px;
+width: 1920px;
+height: 1080px;
+background: transparent url('D:\μαθήματα σχολής\κατανεμημένα συστήματα\HellenicArmy.png') 0% 0% no-repeat padding-box;
+opacity: 1;">--->
+<body style="background-color:powderblue;">
+<br><a id="new" href="">ΝΕΑ ΑΙΤΗΣΗ</a></br>
+<br><a id="change" href="C:\Users\User\Desktop\changes.html">ΤΡΟΠΟΠΟΙΗΣΗ ΗΔΗ ΥΠΑΡΧΟΥΣΑΣ</a></br>
+<a href="http://www.army.gr/" target="_blank"><img src="D:\μαθήματα σχολής\κατανεμημένα συστήματα\HellenicArmy.png" alt="HellenicArmy" width="500" height="600" class="aligncenter"></a>
+
+</body>
+<script type="text/javascript">
+    window.addEventListener('load',(event)=>{
+        document.getElementById('new').addEventListener('click',(event)=>{
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET','http://localhost:8080/app',true);
+            xhr.send();
+            xhr.onreadystatechange = function(){
+
+                if(xhr.status == 200){
+                    window.location.assign("http://localhost:8080/app");
+                }
+            }
+
+        });
+
+    });
+
+
+    window.addEventListener('load',(event)=>{
+        document.getElementById('change').addEventListener('click',(event)=>{
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET','http://localhost:8080/app/{id}',true);
+            xhr.send();
+
+            xhr.onreadystatechange = function(){
+                if(xhr.status == 200){
+                    window.location.assign("http://localhost:8080/app/{id}");
+                }
+
+
+            }
+
+        });
+
+    });
+
+
+
+</script>
+
+
+</html>

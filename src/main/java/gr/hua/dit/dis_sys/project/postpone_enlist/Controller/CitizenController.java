@@ -15,7 +15,7 @@ public class CitizenController {
 
     //Will be the page to redirect every Citizen after login
     //Currently just shows a message to the /cit url
-    @RequestMapping("")
+    @RequestMapping("/")
     String welcome() {
         return "Welcome Citizen";
     }

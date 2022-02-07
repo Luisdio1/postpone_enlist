@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `aplication` (
 `paper` varchar(100)  ,
 `ADT_empl` varchar(50) ,
 `ADT_cit` varchar(100) NOT NULL,
-`ADT_aks` varchar(50) NOT ,
+`ADT_aks` varchar(50) NOT NULL,
 PRIMARY KEY (`aplicationid`),
 CONSTRAINT `fk_aplication_employee` FOREIGN KEY (`ADT_empl`) REFERENCES `employee` (`ADT`),
 CONSTRAINT `fk_aplication_citizen` FOREIGN KEY (`ADT_cit`) REFERENCES `citizen` (`ADT`),
@@ -54,10 +54,10 @@ UNIQUE KEY `ix_auth_adt` (`ADT`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `user` VALUES
-('ab 123', 'Diogenis','Antonopoulos','it21906@hua.gr','dio','$2a$12$aUn0i3oA6UyT..s5VQiu8.ocq20ixV8tWLC80lcU4KzyIx1QTtI8u','1'), pass
-('ac 123', 'Panos','Koletsis','panos@hua.gr','panos','$2a$12$8.hCnzqJneJIvEgoThJ3fu9OqdEYZlkNJFSiUE0GFC7X/yF2zqjj6','2'),        pass1
-('ad 123', 'Panos','Charos','charos@hua.gr','charos','$2a$12$eQcGXbNoBxmQIOreu6Cxquh2zB3xG6fRQm0Z45yi3fPTF4asn0/Qy','3'),        pass2
-('abc 1234', 'Blah','BlahBlah','Blah@hua.gr','Blah','$2a$12$lEc98KLANXqwa0hTpGvKAOocIXfp.HZdEKC/ifEFuQW1eNCsPpazO','4');         admin
+('ab 123', 'Diogenis','Antonopoulos','it21906@hua.gr','dio','$2a$12$aUn0i3oA6UyT..s5VQiu8.ocq20ixV8tWLC80lcU4KzyIx1QTtI8u','1'), 
+('ac 123', 'Panos','Koletsis','panos@hua.gr','panos','$2a$12$8.hCnzqJneJIvEgoThJ3fu9OqdEYZlkNJFSiUE0GFC7X/yF2zqjj6','2'),        
+('ad 123', 'Panos','Charos','charos@hua.gr','charos','$2a$12$eQcGXbNoBxmQIOreu6Cxquh2zB3xG6fRQm0Z45yi3fPTF4asn0/Qy','3'),       
+('abc 1234', 'Blah','BlahBlah','Blah@hua.gr','Blah','$2a$12$lEc98KLANXqwa0hTpGvKAOocIXfp.HZdEKC/ifEFuQW1eNCsPpazO','4');         
 
 INSERT INTO employee VALUES
 ('ab 123');
