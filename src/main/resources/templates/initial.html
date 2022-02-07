@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>initial</title>
+</head>
+<h1>Welcome!!</h1>
+
+<body style="background-color:powderblue;">
+<br>
+<button id="si" type="button">sign in</button>
+<button id="su" type="button">sign up</button></br>
+<a href="http://www.army.gr/" target="_blank"><img src="D:\μαθήματα σχολής\κατανεμημένα συστήματα\HellenicArmy.png" alt="HellenicArmy" width="500" height="600" class="aligncenter"></a>
+
+</body>
+<script type="text/javascript">
+    window.addEventListener('load',(event)=>{
+        document.getElementById('su').addEventListener('click',(event)=>{
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET','/register1',true);
+            xhr.send();
+            xhr.onreadystatechange = function(){
+
+                if(xhr.status == 200){
+                    window.location.assign("/register1");
+                }
+
+            }
+
+        });
+
+    });
+
+    window.addEventListener('load',(event)=>{
+        document.getElementById('si').addEventListener('click',(event)=>{
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET','/login',true);
+            xhr.send();
+            xhr.onreadystatechange = function(){
+
+                if(xhr.status == 200){
+                    window.location.assign("/login");
+                }
+
+
+            }
+
+        });
+
+    });
+
+
+
+</script>
+</html>
