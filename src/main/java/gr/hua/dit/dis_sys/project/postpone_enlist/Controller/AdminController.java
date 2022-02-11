@@ -16,7 +16,7 @@ public class AdminController {
 
     //Will be the page to redirect Admin after login
     //Currently just shows a message to the /admin url
-    @RequestMapping("")
+    @RequestMapping("/admin")
     String welcome() {
         return "Welcome Admin";
     }

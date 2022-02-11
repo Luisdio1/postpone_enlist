@@ -20,7 +20,7 @@ public class EmployeeController {
 
     //Will be the page to redirect every Employee after login
     //Currently just shows a message to the /empl url
-    @RequestMapping("")
+    @RequestMapping("/empl")
     String welcome() {
         return "Welcome Employee";
     }
