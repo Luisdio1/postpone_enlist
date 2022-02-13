@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome Officer</title>
+</head>
+<h2>WELCOME OFFICER</h2>
+<body style="background-color:powderblue;">
+<input type="submit" id="all" value="FIND ALL"><br></br>
+
+</body>
+
+<script type="text/javascript">
+
+
+    window.addEventListener('load',(event)=>{
+        document.getElementById('all').addEventListener('click',(event)=>{
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET','/officerAll',true);
+            xhr.send();
+            xhr.onreadystatechange = function(){
+
+                if(xhr.status == 200){
+                    window.location.assign("/officerAll");
+                }
+
+
+            }
+
+        });
+
+    });
+</script>
+
+</html>

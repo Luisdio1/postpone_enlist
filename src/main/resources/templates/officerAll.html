@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>all</title>
+</head>
+<h2>All</h2>
+<body style="background-color:powderblue;" >
+<label for="id">application id:</label>
+<input type="text" id="id" name="id">
+<input type="submit" id="submit" value="Search">
+
+</body>
+<script type="text/javascript">
+window.addEventListener('load',(event)=>{
+document.getElementById('submit').addEventListener('click',(event)=>{
+const xhr = new XMLHttpRequest();
+xhr.open('GET','/OfficerApprove',true);
+xhr.send();
+xhr.onreadystatechange = function(){
+
+if(xhr.status == 200){
+window.location.assign("/OfficerApprove");
+}
+
+}
+
+});
+
+});
+</script>
+</html>
