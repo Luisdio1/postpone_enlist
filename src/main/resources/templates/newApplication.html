@@ -5,7 +5,7 @@
 </head>
 <h2>ΝΕΑ ΑΙΤΗΣΗ</h2>
 <body style="background-color:powderblue;">
-
+<form name="app">
     <label for="fname">ΟΝΟΜΑ:</label>
     <input type="text" id="fname" name="fname"><br><br>
     <label for="lname">ΕΠΟΝΥΜΟ:</label>
@@ -20,8 +20,8 @@
     <input type="file" id="myFile" name="filename"><br><br>
     <label for="kodAitf">--kodikosAitishs--</label><br><br>
 
-    <input id="Submit" type="submit" value="Submit">
-
+    <input id="Submit" type="button" value="Submit">
+</form>
 
 
 </body>
@@ -29,18 +29,24 @@
 <script type="text/javascript">
     window.addEventListener('load',(event)=>{
         document.getElementById('Submit').addEventListener('click',(event)=>{
+
             const user = {
                 'name':document.getElementById('fname').value,
                 'lastName':document.getElementById('lname').value,
-                'adt':document.getElementById('adt').value,
+                'adtcit':document.getElementById('adt').value,
                 'email':document.getElementById('email').value,
                 'username':document.getElementById('strAr').value,
-                'pass':document.getElementById('myFile').value,
             };
+            const file = {
+                'file':document.getElementById('myFile').value,
+            }
+            var formdata = new FormData();
+            formdata.append("file", document.forms["app"].filename.files[0] );
+            formdata.append("user",new Blob([JSON.stringify(user)],{type: "application/json"}))
             const xhr = new XMLHttpRequest();
-            xhr.open('POST','http://localhost:8080/app',true);
-            xhr.setRequestHeader('Content-Type' , 'multipart/form-data');
-            xhr.send(user);
+            xhr.open('POST','http://localhost:8080/cit/app',true);
+
+            xhr.send(formdata);
             xhr.onreadystatechange = function (){
 
                 if(xhr.status == 200){

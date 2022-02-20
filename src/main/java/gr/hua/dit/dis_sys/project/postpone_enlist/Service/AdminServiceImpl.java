@@ -57,12 +57,19 @@ public class AdminServiceImpl implements AdminService{
     //Probably not needed since this is the register function which shouldn't be done by the admin
     @Override
     public User addUser(User user) {
-        List<User> users = rep.findAll();
-        if(users.stream().map(User::getADT).filter(user.getADT()::equals).findFirst().isPresent()) {
-            throw new UserAlreadyExistsException();
+        if (rep.findByADT(user.getADT()) == null ){
+
+            return rep.save(user);
+
         }
 
-        return rep.save(user);
+//        List<User> users = rep.findAll();
+//        if(users.stream().map(User::getADT).filter(user.getADT()::equals).findFirst().isPresent()) {
+//            throw new UserAlreadyExistsException();
+//        }
+//
+        throw new UserAlreadyExistsException();
+
     }
 
     //Updates the users information
@@ -95,15 +102,25 @@ public class AdminServiceImpl implements AdminService{
     //Store to table citizen the user and give him the ROLE_USER
     @Override
     public void makeUserCitizen(String ADT) {
-        List<Citizen> citizens = citRep.findAll();
-        User user = findUserByADT(ADT);
-        if(citizens.stream().map(Citizen::getADT).filter(user.getADT()::equals).findFirst().isPresent()) {
-            throw new UserAlreadyExistsException();
-        }
-        citRep.insertCitizen(user.getADT());
-        Authorities auth = new Authorities(user.getADT(), "ROLE_USER");
+
+        Citizen cit = new Citizen();
+        cit.setADT(ADT);
+        citRep.save(cit);
+        Authorities auth = new Authorities(ADT, "ROLE_USER");
         authRep.save(auth);
+
     }
+
+
+//        List<Citizen> citizens = citRep.findAll();
+//        User user = findUserByADT(ADT);
+//        if(citizens.stream().map(Citizen::getADT).filter(user.getADT()::equals).findFirst().isPresent()) {
+//            throw new UserAlreadyExistsException();
+//        }
+//        citRep.insertCitizen(user.getADT());
+//        Authorities auth = new Authorities(user.getADT(), "ROLE_USER");
+//        authRep.save(auth);
+//    }
 
     //Store to table employees the user and give him the ROLE_EMPL
     @Override

@@ -24,9 +24,9 @@ public class OpenEndpointsController {
 
     @PostMapping(value ="/register" , consumes = {"application/json"})
     User register(@RequestBody User user) {
-
-        service.makeUserCitizen(user.getADT());
-        return service.addUser(user);
+        User newUser = service.addUser(user);
+       service.makeUserCitizen(user.getADT());
+        return newUser;
     }
 
     //Register Page

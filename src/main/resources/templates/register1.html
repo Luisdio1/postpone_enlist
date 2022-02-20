@@ -6,22 +6,22 @@
 <h2>ΝΕΟΣ ΛΟΓΑΡΙΑΣΜΟΣ</h2>
 <body style="background-color:powderblue;">
 
-    <label for="fname">ΟΝΟΜΑ:</label>
-    <input type="text" id="fname" name="fname"><br><br>
-    <label for="lname">ΕΠΩΝΥΜΟ:</label>
-    <input type="text" id="lname" name="lname"><br><br>
-    <label for="adt">ΑΔΤ:</label>
-    <input type="text" id="adt" name="adt"><br><br>
-    <label for="email">EMAIL:</label>
-    <input type="text" id="email" name="email"><br><br>
-    <label for="username">ΟΝΟΜΑ ΧΡΗΣΤΗ:</label>
-    <input type="text" id="username" name="username"><br><br>
-    <label for="password">ΚΩΔΙΚΟΣ:</label>
-    <input type="text" id="password" name="password"><br><br>
+<label for="fname">ΟΝΟΜΑ:</label>
+<input type="text" id="fname" name="fname"><br><br>
+<label for="lname">ΕΠΩΝΥΜΟ:</label>
+<input type="text" id="lname" name="lname"><br><br>
+<label for="adt">ΑΔΤ:</label>
+<input type="text" id="adt" name="adt"><br><br>
+<label for="email">EMAIL:</label>
+<input type="text" id="email" name="email"><br><br>
+<label for="username">ΟΝΟΜΑ ΧΡΗΣΤΗ:</label>
+<input type="text" id="username" name="username"><br><br>
+<label for="password">ΚΩΔΙΚΟΣ:</label>
+<input type="text" id="password" name="password"><br><br>
 
 
 
-    <input type="submit" id="butt" value="εγγραφη">
+<input type="submit" id="butt" value="εγγραφη">
 
 
 
@@ -35,7 +35,7 @@
                 'adt':document.getElementById('adt').value,
                 'email':document.getElementById('email').value,
                 'username':document.getElementById('username').value,
-                'pass':document.getElementById('password').value,
+                'password':document.getElementById('password').value,
 
             };
 
@@ -45,11 +45,11 @@
 
 
             xhr.setRequestHeader('Content-Type' , 'application/json' );
-             xhr.send(JSON.stringify(user.lastName));
+            xhr.send(JSON.stringify(user));
             xhr.onreadystatechange = function (){
 
-                    if(xhr.status == 200){
-                        alert('OK');
+                if(xhr.status == 200){
+                    alert('OK');
 
                 }
             };

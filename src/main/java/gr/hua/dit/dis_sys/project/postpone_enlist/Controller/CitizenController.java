@@ -29,7 +29,7 @@ public class CitizenController {
 
     //Submit an application
     @PostMapping(value = "/app", consumes = {"multipart/form-data"})
-    Application submitApp(@RequestPart Application newApplication, @RequestPart MultipartFile file) {
+    Application submitApp(@RequestPart(value = "user") Application newApplication, @RequestPart(value = "file") MultipartFile file) {
         return citizenService.submitApplication(newApplication,file);
     }
 
