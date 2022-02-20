@@ -1,4 +1,16 @@
+Step 1.
+Install docker
+
+Step 2.
+Run the following command
+
 docker run --name ergasia -v mysqldbvol:/val/lib/mysql -p 3306:3306 -e MYSQL_USER=admin -e MYSQL_PASSWORD=admin -e MYSQL_DATABASE=citizens -e MYSQL_ROOT_PASSWORD=pass --rm -d mysql/mysql-server:latest
+
+Step 3.
+Connect to the database.(In this project we used DataGrip)
+
+Step 4.
+Create the tables and add starting data
 
 CREATE TABLE IF NOT EXISTS `user` (
 `ADT` varchar(50) NOT NULL ,
@@ -74,3 +86,6 @@ INSERT INTO authorities VALUES
 ('ac 123', 'ROLE_EMPL'),
 ('ad 123', 'ROLE_AKS'),
 ('abc 1234', 'ROLE_ADMIN');
+
+INSERT INTO aplication(date_created, status, ADT_cit, paper) VALUES
+('2021-12-25', 0, 'ab 123', 'YES');
