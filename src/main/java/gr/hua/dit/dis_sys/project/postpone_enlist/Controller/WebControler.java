@@ -28,9 +28,20 @@ public class WebControler {
 
 
 
+    @GetMapping({ "/apps", "/employeeAll" })
+    public String employeeAll(Model model) {
+        return "employeeAll"; // name of the View
+    }
 
+    @GetMapping({ "/empl", "/welcomeEmployee" })
+    public String welcomeEmployee(Model model) {
+        return "welcomeEmployee"; // name of the View
+    }
 
-
+//    @GetMapping({ "/apps/{id}", "/employeeApprove" })
+//    public String employeeApprove(Model model) {
+//        return "employeeApprove"; // name of the View
+//    }
 
 
     @GetMapping({ "/cit", "/cityzen" })
@@ -58,4 +69,9 @@ public class WebControler {
         return "changes"; // name of the View
 
     }
+    @GetMapping({ "/aks/{id}/apps", "/officerAll" })
+    public String officerAll(Model model) {
+        return "officerAll"; // name of the View
+    }
+
 }

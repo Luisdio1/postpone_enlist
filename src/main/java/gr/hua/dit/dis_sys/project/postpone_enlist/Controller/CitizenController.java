@@ -35,7 +35,7 @@ public class CitizenController {
 
     //Update the application
     @PutMapping(value = "/app/{id}",consumes = {"multipart/form-data"})
-    Application changeApp(@RequestPart Application newApplication,@RequestPart MultipartFile file, @PathVariable int id) {
+    Application changeApp(@RequestPart(value = "id") Application newApplication ,@RequestPart(value = "file") MultipartFile file, @PathVariable int id) {
         return citizenService.changeApplication(newApplication, id, file);
     }
 }

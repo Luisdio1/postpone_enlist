@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WelcomeEmployee</title>
+</head>
+<h2>Welcome Employee</h2>
+<body style="background-color:powderblue;">
+<input type="button" id="all" value="FIND ALL">
+<input type="button" id="one" value="FIND by Id">
+<label for="id">Application id:</label>
+<input type="text" id="password" name="password"><br><br>
+<input type="button" id="aprove" value="Aprove">
+<input type="button" id="reject" value="Reject">
+<br></br>
+
+</body>
+
+<script type="text/javascript">
+
+
+    window.addEventListener('load',(event)=>{
+        document.getElementById('all').addEventListener('click',(event)=>{
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET','/empl/apps',true);
+            xhr.send();
+            xhr.onreadystatechange = function(){
+
+
+
+                if(xhr.status == 200){
+                   /* window.location.assign("/employeeAll"); */
+                     window.alert(xhr.responseText);
+                }
+
+
+            }
+
+        });
+
+    });
+    window.addEventListener('load',(event)=>{
+        document.getElementById('one').addEventListener('click',(event)=>{
+            const xhr = new XMLHttpRequest();
+
+            xhr.open('GET','/employeeAll',true);
+            xhr.send();
+            xhr.onreadystatechange = function() {
+
+                if (xhr.status == 200) {
+                    /* window.location.assign("/employeeAll"); */
+                    window.location.assign("/employeeAll");
+                }
+
+
+            }
+        });
+
+    });
+    window.addEventListener('load',(event)=>{
+        document.getElementById('aprove').addEventListener('click',(event)=>{
+            const xhr = new XMLHttpRequest();
+            const id = document.getElementById('password').value;
+            xhr.open('PUT','/empl/apps/'+id+'/approve',true);
+            xhr.send();
+            xhr.onreadystatechange = function() {
+
+                if (xhr.status == 200) {
+                    alert(xhr.responseText);
+                }
+
+
+            }
+        });
+
+    });
+    window.addEventListener('load',(event)=>{
+        document.getElementById('reject').addEventListener('click',(event)=>{
+            const xhr = new XMLHttpRequest();
+            const id = document.getElementById('password').value;
+            xhr.open('PUT','/empl/apps/'+id+'/reject',true);
+            xhr.send();
+            xhr.onreadystatechange = function() {
+
+                if (xhr.status == 200) {
+                    alert(xhr.responseText);
+                }
+
+
+            }
+        });
+
+    });
+</script>
+</html>

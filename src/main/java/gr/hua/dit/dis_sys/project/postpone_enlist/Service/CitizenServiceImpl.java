@@ -41,6 +41,7 @@ public class CitizenServiceImpl implements CitizenService{
         }
         fileService.save(file);
         application.setPaper(fileService.getPath(file.getName()).toString());
+
         return appRep.save(application);
     }
 

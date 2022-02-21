@@ -1,5 +1,7 @@
 package gr.hua.dit.dis_sys.project.postpone_enlist.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -17,6 +19,7 @@ public class Aksiomatikos {
     private User user;
 
     @OneToMany(mappedBy = "aks")
+    
     private List<Application> applications;
 
     @ManyToOne(cascade=CascadeType.ALL)

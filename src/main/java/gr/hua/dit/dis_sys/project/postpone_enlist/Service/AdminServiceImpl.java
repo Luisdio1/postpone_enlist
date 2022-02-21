@@ -5,6 +5,7 @@ import gr.hua.dit.dis_sys.project.postpone_enlist.Exceptions.UserAlreadyExistsEx
 import gr.hua.dit.dis_sys.project.postpone_enlist.Exceptions.UserNotFoundException;
 import gr.hua.dit.dis_sys.project.postpone_enlist.Repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -58,7 +59,7 @@ public class AdminServiceImpl implements AdminService{
     @Override
     public User addUser(User user) {
         if (rep.findByADT(user.getADT()) == null ){
-
+            user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
             return rep.save(user);
 
         }

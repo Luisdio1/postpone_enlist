@@ -12,8 +12,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-
 @Transactional
 @Service
 public class EmployeeServiceImpl implements EmployeeService{
@@ -63,8 +61,9 @@ public class EmployeeServiceImpl implements EmployeeService{
 
     //Get all applications
     @Override
-    public List<Application> findAll() {
-        return appRep.findAll();
+    public String findAll() {
+
+          return appRep.findAll().toString();
     }
 
     //Find user given the username

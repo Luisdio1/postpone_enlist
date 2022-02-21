@@ -64,6 +64,7 @@ public class AksiomatikosServiceImpl implements AksiomatikosService{
     //Find all applications
     @Override
     public List<Application> findAll() {
+
         return appRep.findAll();
     }
 
