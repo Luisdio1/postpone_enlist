@@ -52,6 +52,28 @@ public class WebControler {
     public String employeeApprove(Model model) {
         return "employeeApprove"; // name of the View
     }
+    @GetMapping({ "/admin", "/welcomeAdmin" })
+    public String welcomeAdmin(Model model) {
+        return "welcomeAdmin";
+    }
+    @GetMapping({ "/users", "/adminAll" })
+    public String adminAll(Model model) {
+        return "adminAll"; // name of the View
+    }
+    @GetMapping({ "/user", "/adminAdd" })
+    public String addUser(Model model) {
+        return "adminAdd"; // name of the View
+    }
+    @GetMapping({ "/user/{ADT}", "/adminFind" })
+    public String adminFindAdt(Model model) {
+        return "adminFind"; // name of the View
+    }
+    @GetMapping({ "/user/{username}", "/adminFind" })
+    public String adminFindUsername(Model model) {
+        return "adminFind"; // name of the View
+    }
+
+
 
 
 }

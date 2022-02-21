@@ -4,8 +4,86 @@
     <meta charset="UTF-8">
     <title>Admin</title>
 </head>
-<h2>Welcome admin</h2>>
-<body>
+<h2>Welcome admin</h2>
+<body style="background-color:powderblue;">
+<input type="submit" id="all" value="FIND ALL"><br><br>
+<input type="submit" id="addUser" value="ADD USER"><br><br>
+<input type="submit" id="findAdt" value="FIND ADT"><br><br>
+<input type="submit" id="findUsername" value="FIND USERNAME"><br><br>
 
 </body>
+
+<script type="text/javascript">
+    window.addEventListener('load',(event)=>{
+        document.getElementById('all').addEventListener('click',(event)=>{
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET','/adminAll',true);
+            xhr.send();
+            xhr.onreadystatechange = function(){
+
+                if(xhr.status == 200){
+                    window.location.assign("/adminAll");
+                }
+
+            }
+
+        });
+
+    });
+</script>
+<script type="text/javascript">
+    window.addEventListener('load',(event)=>{
+        document.getElementById('addUser').addEventListener('click',(event)=>{
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET','/adminAdd',true);
+            xhr.send();
+            xhr.onreadystatechange = function(){
+
+                if(xhr.status == 200){
+                    window.location.assign("/adminAdd");
+                }
+
+            }
+
+        });
+
+    });
+</script>
+<script type="text/javascript">
+    window.addEventListener('load',(event)=>{
+        document.getElementById('findAdt').addEventListener('click',(event)=>{
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET','/adminFind',true);
+            xhr.send();
+            xhr.onreadystatechange = function(){
+
+                if(xhr.status == 200){
+                    window.location.assign("/adminFind");
+                }
+
+            }
+
+        });
+
+    });
+</script>
+<script type="text/javascript">
+    window.addEventListener('load',(event)=>{
+        document.getElementById('findUsername').addEventListener('click',(event)=>{
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET','/adminFind',true);
+            xhr.send();
+            xhr.onreadystatechange = function(){
+
+                if(xhr.status == 200){
+                    window.location.assign("/adminFind");
+                }
+
+            }
+
+        });
+
+    });
+</script>
+
 </html>
