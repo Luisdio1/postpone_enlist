@@ -1,9 +1,12 @@
 package gr.hua.dit.dis_sys.project.postpone_enlist.Controller;
 
+import gr.hua.dit.dis_sys.project.postpone_enlist.Entity.Application;
 import gr.hua.dit.dis_sys.project.postpone_enlist.Entity.User;
 import gr.hua.dit.dis_sys.project.postpone_enlist.Service.AdminServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 
@@ -23,14 +26,34 @@ public class AdminController {
 
     //Find all the users
     @GetMapping("/users")
-    List<User> all() {
+    /*List<User> all() {
         return adminService.findAllUsers();
+    }*/
+    public ModelAndView all() {
+        ModelAndView mav = new ModelAndView("list-users");
+        List<User> list = adminService.findAllUsers();
+        mav.addObject("users",list);
+        return mav;
+    }
+
+    @GetMapping("/addUserForm")
+    public ModelAndView addUserForm() {
+        ModelAndView mav = new ModelAndView("add-user-form");
+        User newUser = new User();
+        mav.addObject("user", newUser);
+        return mav;
     }
 
     //Add a User
     @PostMapping("/user")
-    User addUser(@RequestBody User user) {
+    /* User addUser(@RequestBody User user) {
         return adminService.addUser(user);
+    }*/
+    public RedirectView addUser(@ModelAttribute User user) {
+        adminService.addUser(user);
+        RedirectView redirectView = new RedirectView();
+        redirectView.setUrl("/admin/users");
+        return redirectView;
     }
 
     //Updates a User

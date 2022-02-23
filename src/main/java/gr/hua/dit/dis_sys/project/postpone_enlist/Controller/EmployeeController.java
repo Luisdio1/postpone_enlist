@@ -5,6 +5,7 @@ import gr.hua.dit.dis_sys.project.postpone_enlist.Service.EmployeeServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -26,9 +27,17 @@ public class EmployeeController {
     }
 
     //Find all the applications
-    @GetMapping("/apps")
+    /*@GetMapping("/apps")
     List<Application> all() {
         return employeeService.findAll();
+    }*/
+
+    @GetMapping("/apps")
+    public ModelAndView all() {
+        ModelAndView mav = new ModelAndView("list-apps");
+        List<Application> list = employeeService.findAll();
+        mav.addObject("apps",list);
+        return mav;
     }
 
     //Find the application with given id

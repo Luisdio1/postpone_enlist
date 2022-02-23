@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>List Apps</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <h2>List Users</h2>
+    <hr/>
+    <a th:href="@{/admin/addUserForm}" class="btn btn-primary mb-2"> Add User </a>
+    <table class = "table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>ADT</th>
+            <th>Name</th>
+            <th>Last Name</th>
+            <th>E-mail</th>
+            <th>Username</th>
+            <th>Military Number</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user: ${users}">
+            <td th:text="${user.ADT}"></td>
+            <td th:text="${user.name}"></td>
+            <td th:text="${user.lastName}"></td>
+            <td th:text="${user.email}"></td>
+            <td th:text="${user.username}"></td>
+            <td th:text="${user.militaryNumber}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+
+</html>

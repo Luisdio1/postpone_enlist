@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add User</title>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <h2> Add User</h2>
+    </hr>
+    <form th:action="@{/admin/user}" th:object="${user}" method="post">
+        <input type="text" th:field="*{ADT}" placeholder="Enter ADT" class="form-control col-4 mb-4"/>
+        <input type="text" th:field="*{name}" placeholder="Enter Name" class="form-control col-4 mb-4"/>
+        <input type="text" th:field="*{lastName}" placeholder="Enter Last Name" class="form-control col-4 mb-4"/>
+        <input type="text" th:field="*{email}" placeholder="Enter E-mail" class="form-control col-4 mb-4"/>
+        <input type="text" th:field="*{username}" placeholder="Enter Username" class="form-control col-4 mb-4"/>
+        <input type="text" th:field="*{password}" placeholder="Enter Password" class="form-control col-4 mb-4"/>
+        <input type="text" th:field="*{militaryNumber}" placeholder="Enter Military Number" class="form-control col-4 mb-4"/>
+        <button class="btn btn-primary" type="submit">Add</button>
+    </form>
+</div>
+</body>
+
+</html>
