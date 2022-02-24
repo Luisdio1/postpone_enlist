@@ -13,7 +13,7 @@ public class Employee {
     private String ADT;
 
     //Relations with other tables
-    @OneToOne(mappedBy = "employee" , cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "employee")
     private User user;
 
     @OneToMany(mappedBy = "employee")

@@ -46,6 +46,27 @@ public class AdminServiceImpl implements AdminService{
         return user;
     }
 
+    //Finds a Citizen given the ADT
+    @Override
+    public Citizen findCitizenByADT(String ADT) {
+        Citizen citizen = citRep.findByADT(ADT);
+        return citizen;
+    }
+
+    //Finds a Aksiomatiko given the ADT
+    @Override
+    public Aksiomatikos findAksiomatikoByADT(String ADT) {
+        Aksiomatikos aksiomatikos = aksRep.findByADT(ADT);
+        return aksiomatikos;
+    }
+
+    //Finds a Employee given the ADT
+    @Override
+    public Employee findEmployeeByADT(String ADT) {
+        Employee employee = emplRep.findByADT(ADT);
+        return employee;
+    }
+
     //Finds All Users
     @Override
     public List<User> findAllUsers() {
@@ -57,12 +78,15 @@ public class AdminServiceImpl implements AdminService{
     //Probably not needed since this is the register function which shouldn't be done by the admin
     @Override
     public User addUser(User user) {
-        List<User> users = rep.findAll();
+        /*List<User> users = rep.findAll();
         if(users.stream().map(User::getADT).filter(user.getADT()::equals).findFirst().isPresent()) {
             throw new UserAlreadyExistsException();
-        }
-
-        return rep.save(user);
+        }*/
+        rep.save(user);
+        citRep.insertCitizen(user.getADT());
+        Authorities auth = new Authorities(user.getADT(), "ROLE_USER");
+        authRep.save(auth);
+        return user;
     }
 
     //Updates the users information
@@ -88,7 +112,20 @@ public class AdminServiceImpl implements AdminService{
     @Override
     public void deleteUser(String ADT) {
 
+        Employee employee = findEmployeeByADT(ADT);
+        Aksiomatikos aksiomatikos = findAksiomatikoByADT(ADT);
+        Citizen citizen = findCitizenByADT(ADT);
         User user = findUserByADT(ADT);
+
+        if(employee != null) {
+            emplRep.delete(employee);
+        }
+        if(aksiomatikos != null) {
+            aksRep.delete(aksiomatikos);
+        }
+        if(citizen != null) {
+            citRep.delete(citizen);
+        }
         rep.delete(user);
     }
 
@@ -100,6 +137,7 @@ public class AdminServiceImpl implements AdminService{
         if(citizens.stream().map(Citizen::getADT).filter(user.getADT()::equals).findFirst().isPresent()) {
             throw new UserAlreadyExistsException();
         }
+
         citRep.insertCitizen(user.getADT());
         Authorities auth = new Authorities(user.getADT(), "ROLE_USER");
         authRep.save(auth);
@@ -109,10 +147,13 @@ public class AdminServiceImpl implements AdminService{
     @Override
     public void makeUserEmployee(String ADT) {
         List<Employee> employees = emplRep.findAll();
+
         User user = findUserByADT(ADT);
+
         if(employees.stream().map(Employee::getADT).filter(user.getADT()::equals).findFirst().isPresent()) {
             throw new UserAlreadyExistsException();
         }
+
         emplRep.insertEmployee(user.getADT());
         Authorities auth = new Authorities(user.getADT(), "ROLE_EMPL");
         authRep.save(auth);

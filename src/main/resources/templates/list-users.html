@@ -21,6 +21,7 @@
             <th>E-mail</th>
             <th>Username</th>
             <th>Military Number</th>
+            <th>Actions</th>
         </tr>
         </thead>
         <tbody>
@@ -31,6 +32,13 @@
             <td th:text="${user.email}"></td>
             <td th:text="${user.username}"></td>
             <td th:text="${user.militaryNumber}"></td>
+            <td>
+                <a th:href="@{/admin/showUpdateForm(ADT=${user.ADT})}" class="btn btn-info">Update</a>
+                <a th:href="@{/admin/deleteUser(ADT=${user.ADT})}" class="btn btn-danger ml-2">Delete</a>
+                <a th:href="@{/admin/auth/citizen(ADT=${user.ADT})}" class="btn btn-info">Citizen</a>
+                <a th:href="@{/admin/auth/employee(ADT=${user.ADT})}" class="btn btn-info">Employee</a>
+                <a th:href="@{/admin/auth/aks(ADT=${user.ADT})}" class="btn btn-info">Aksiomatiko</a>
+            </td>
         </tr>
         </tbody>
     </table>
