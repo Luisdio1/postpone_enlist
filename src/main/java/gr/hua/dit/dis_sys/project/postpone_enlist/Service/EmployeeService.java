@@ -4,6 +4,8 @@ import gr.hua.dit.dis_sys.project.postpone_enlist.Entity.Application;
 import gr.hua.dit.dis_sys.project.postpone_enlist.Entity.User;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public interface EmployeeService {
 
@@ -13,7 +15,7 @@ public interface EmployeeService {
 
     public Application rejectApplication(int id);
 
-    public String findAll();
+    public List<Application> findAll();
 
     public User findByName(String name);
 }

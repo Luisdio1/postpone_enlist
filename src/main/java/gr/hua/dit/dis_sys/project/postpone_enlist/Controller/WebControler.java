@@ -28,15 +28,15 @@ public class WebControler {
 
 
 
-    @GetMapping({ "/apps", "/employeeAll" })
-    public String employeeAll(Model model) {
-        return "employeeAll"; // name of the View
-    }
+//    @GetMapping({ "/apps", "/employeeAll" })
+//    public String employeeAll(Model model) {
+//        return "employeeAll"; // name of the View
+//    }
 
-    @GetMapping({ "/empl", "/welcomeEmployee" })
-    public String welcomeEmployee(Model model) {
-        return "welcomeEmployee"; // name of the View
-    }
+//    @GetMapping({ "/empl", "/welcomeEmployee" })
+//    public String welcomeEmployee(Model model) {
+//        return "welcomeEmployee"; // name of the View
+//    }
 
 //    @GetMapping({ "/apps/{id}", "/employeeApprove" })
 //    public String employeeApprove(Model model) {
@@ -69,9 +69,25 @@ public class WebControler {
         return "changes"; // name of the View
 
     }
-    @GetMapping({ "/aks/{id}/apps", "/officerAll" })
-    public String officerAll(Model model) {
-        return "officerAll"; // name of the View
-    }
+//    @GetMapping({ "/aks/{id}/apps", "/officerAll" })
+//    public String officerAll(Model model) {
+//        return "officerAll"; // name of the View
+//    }
+
+//    @GetMapping({ "/admin/users", "/list-users" })
+//    public String welcomeAdmin(Model model) {
+//        return "list-users";
+//    }
+//
+//    @GetMapping({ "/admin/user/{ADT}", "/deleteUser" })
+//    public String deleteUser(Model model) {
+//        return "deleteUser";
+//    }
+
+//    @GetMapping({ "/admin/user/{ADT}", "/adtBox" })
+//    public String findByAdt(Model model) {
+//        return "/adtBox";
+//    }
+//
 
 }

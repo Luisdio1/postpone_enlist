@@ -15,7 +15,7 @@ public class Citizen {
     private Integer applicationId;
 
     //Relations with other tables
-    @OneToOne(mappedBy = "citizen" , cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "citizen")
     private User user;
 
     @OneToOne(mappedBy = "citizen")

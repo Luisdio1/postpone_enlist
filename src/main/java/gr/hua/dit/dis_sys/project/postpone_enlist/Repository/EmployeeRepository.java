@@ -16,4 +16,8 @@ public interface EmployeeRepository extends JpaRepository<Employee, String> {
     @Modifying
     @Query(value = "insert into Employee (ADT) values (:ADT)", nativeQuery = true)
     void insertEmployee(@Param("ADT") String ADT);
+
+    //Custom query to return a employee based on the ADT
+    @Query("SELECT e FROM Employee e WHERE e.ADT = :ADT")
+    Employee findByADT(@Param("ADT") String ADT);
 }

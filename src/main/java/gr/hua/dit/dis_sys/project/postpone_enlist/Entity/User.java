@@ -29,15 +29,15 @@ public class User {
     private String militaryNumber;
 
     //Relations with other tables
-    @OneToOne(cascade=CascadeType.ALL)
+    @OneToOne()
     @JoinColumn(name ="ADT")
     private Aksiomatikos aksiomatikos;
 
-    @OneToOne(cascade=CascadeType.ALL)
+    @OneToOne()
     @JoinColumn(name ="ADT")
     private Citizen citizen;
 
-    @OneToOne(cascade=CascadeType.ALL)
+    @OneToOne()
     @JoinColumn(name ="ADT")
     private Employee employee;
 

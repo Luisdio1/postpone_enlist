@@ -15,7 +15,7 @@ public class Aksiomatikos {
     private String ADT;
 
     //Relations with other tables
-    @OneToOne(mappedBy = "aksiomatikos" , cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "aksiomatikos")
     private User user;
 
     @OneToMany(mappedBy = "aks")

@@ -3,8 +3,10 @@ package gr.hua.dit.dis_sys.project.postpone_enlist.Service;
 import gr.hua.dit.dis_sys.project.postpone_enlist.DateUtils;
 import gr.hua.dit.dis_sys.project.postpone_enlist.Entity.Application;
 
-import gr.hua.dit.dis_sys.project.postpone_enlist.Exceptions.ApplicationAlreadyExistsException;
+import gr.hua.dit.dis_sys.project.postpone_enlist.Entity.Citizen;
+import gr.hua.dit.dis_sys.project.postpone_enlist.Entity.User;
 import gr.hua.dit.dis_sys.project.postpone_enlist.Exceptions.ApplicationNotFoundException;
+import gr.hua.dit.dis_sys.project.postpone_enlist.Exceptions.UserNotFoundException;
 import gr.hua.dit.dis_sys.project.postpone_enlist.Repository.ApplicationRepository;
 import gr.hua.dit.dis_sys.project.postpone_enlist.Repository.CitizenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +15,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.text.ParseException;
-import java.util.List;
 
 @Service
 @Transactional
-public class CitizenServiceImpl implements CitizenService{
+public class CitizenServiceImpl implements CitizenService {
 
     @Autowired
     private FileService fileService;
@@ -28,7 +29,7 @@ public class CitizenServiceImpl implements CitizenService{
 
     //Submit an application
     @Override
-    public Application submitApplication(Application application,MultipartFile file) {
+    public Application submitApplication(Application application, MultipartFile file) {
         //If application exists with same ADT throw an exception
         /*List<Application> apps = appRep.findAll();
         if(apps.stream().map(Application::getADTCit).filter(application.getADTCit()::equals).findFirst().isPresent()) {
@@ -73,4 +74,6 @@ public class CitizenServiceImpl implements CitizenService{
                     return appRep.save(app);
                 });
     }
+
+
 }

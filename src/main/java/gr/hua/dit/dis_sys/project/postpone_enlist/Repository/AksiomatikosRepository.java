@@ -16,4 +16,8 @@ public interface AksiomatikosRepository extends JpaRepository<Aksiomatikos, Stri
     @Modifying
     @Query(value = "insert into Aksiomatikos (ADT) values (:ADT)", nativeQuery = true)
     void insertAksiomatiko(@Param("ADT") String ADT);
+
+    //Custom query to return a aksiomatiko based on the ADT
+    @Query("SELECT a FROM Aksiomatikos a WHERE a.ADT = :ADT")
+    Aksiomatikos findByADT(@Param("ADT") String ADT);
 }

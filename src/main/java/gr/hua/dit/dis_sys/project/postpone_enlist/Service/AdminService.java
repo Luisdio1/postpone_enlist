@@ -1,6 +1,9 @@
 package gr.hua.dit.dis_sys.project.postpone_enlist.Service;
 
 ;
+import gr.hua.dit.dis_sys.project.postpone_enlist.Entity.Aksiomatikos;
+import gr.hua.dit.dis_sys.project.postpone_enlist.Entity.Citizen;
+import gr.hua.dit.dis_sys.project.postpone_enlist.Entity.Employee;
 import gr.hua.dit.dis_sys.project.postpone_enlist.Entity.User;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +15,15 @@ public interface AdminService {
     public User findUser(String username);
 
     public User findUserByADT(String ADT);
+
+    //Finds a Citizen given the ADT
+    Citizen findCitizenByADT(String ADT);
+
+    //Finds a Aksiomatiko given the ADT
+    Aksiomatikos findAksiomatikoByADT(String ADT);
+
+    //Finds a Employee given the ADT
+    Employee findEmployeeByADT(String ADT);
 
     public List<User> findAllUsers();
 
