@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>haha</title>
+</head>
+<body>
+Student Id:<input type="text" id="t1"><br>
+first name:<input type="text" id="t2"><br>
+last name:<input type="text" id="t2"><br>
+<input type="button" id="b1"value="Search">
+<input type="button" value="insert">
+<script type="text/javascript">
+document.getElementById('b2').addEventListener('click', function(event){
+const k = document.getElementById('t1').value;
+const k1 = document.getElementById('t2').value;
+alert(k+' '+k1);
+window.addEventListener('load'.(event)=>{
+ document.getElementById('getUsers').addEventListener('click',(event)=>{
+ const xhr = new XMLHttpRequest();
+			 xhr.open('GET',' http://62.217.127.19:8010/students/',true);
+			 xhr.send();
+			 xhr.onreadystatechange = function(){
+			 if(xhr.readyState == 4){
+			    if(xhr.status == 200){
+				   alert(xhr.responseText);
+				}
+				
+			}
+				 
+
+         };
+});
+
+
+</script>
+
+</body>
+</html>
