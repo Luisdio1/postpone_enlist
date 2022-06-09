@@ -14,7 +14,7 @@
 	<name>postpone_enlist</name>
 	<description>Project For Distributed Systems</description>
 	<properties>
-		<java.version>11</java.version>
+		<java.version>9</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
